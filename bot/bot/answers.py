@@ -30,11 +30,11 @@ function rwtn {{
         echo "Failed to execute: $cmd"
     fi
 
-    curl -X POST -H "Content-Type: application/json" -d '{{
-        "text": $TELEGRAM_NOTIFIER_MESSAGE,
-        "telegram_id": {},
-        "telegram_password": {}
-    }}' http://{}/send_notification
+    curl -X POST -H "Content-Type: application/json" -d "{{
+        \\"text\\": \\"$TELEGRAM_NOTIFIER_MESSAGE\\",
+        \\"telegram_id\\": \\"{}\\",
+        \\"telegram_password\\": \\"{}\\"
+    }}" http://{}/send_notification
 }}
 ```
 '''

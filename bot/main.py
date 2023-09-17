@@ -27,6 +27,4 @@ if __name__ == "__main__":
 
     init_flask(bot, app, host, int(port))
 
-    bot.logger.debug("bot pooling started")
-
 
