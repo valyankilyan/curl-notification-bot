@@ -22,7 +22,7 @@ def setup_default_commands(bot: myTeleBot):
         bot.send_message(message.chat.id, help_text, parse_mode='Markdown', disable_web_page_preview=True)
 
 
-    @bot.message_handler(commands=["get_bash_script"])
+    @bot.message_handler(commands=["getbashscript"])
     def get_bash_script(message):
         user = sync_user(bot, message.from_user.id, message.from_user.username)
         bot.logger.info(f'{message.from_user.username} sent {message.text}')
