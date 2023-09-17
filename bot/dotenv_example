@@ -3,7 +3,6 @@ BOT_TOKEN=
 ADMIN_PASSWORD=roottoor
 LOGGING_CONFIG_PATH=logging.conf
 SQL_ENGINE_URL=sqlite:///../app.sqlite
-HOST=0.0.0.0
-URL=curl-notifier.vkiel.com
+URL=curly-notifier.vkiel.com
 
 IMAGE_UPLOAD_FOLDER='/images'

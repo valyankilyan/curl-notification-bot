@@ -1,10 +1,10 @@
 #!/bin/bash
 set -e
 
-export PROJECT_DIR=${PROJECT_DIR:-"/var/otvali"}
-export BOT_IMAGE=${BOT_IMAGE:-valyankilyan/bot_template:0.0.1}
+export PROJECT_DIR=${PROJECT_DIR:-"/var/curly-notifier"}
+export BOT_IMAGE=${BOT_IMAGE:-valyankilyan/curly-notifier:0.0.1}
 export USER_WEBHOOK=${USER_WEBHOOK:-False}
-export SECRET_ID=${SECRET_ID:-insert_secret_id}
+export SECRET_ID=${SECRET_ID:-e6q0qua8t356gkl1rbcq}
 
 source "${PROJECT_DIR}/.env"
 
@@ -16,6 +16,6 @@ export SECRET_PAYLOAD=$(curl -X GET -H "Authorization: Bearer ${IAM_TOKEN}" http
 export BOT_TOKEN=$(echo $SECRET_PAYLOAD | jq -r '.entries[] | select(.key=="BOT_TOKEN") | .textValue')
 export ADMIN_PASSWORD=$(echo $SECRET_PAYLOAD | jq -r '.entries[] | select(.key=="admin-password") | .textValue')
 
-export SQL_ENGINE_URL=sqlite://app.sqlite
+export SQL_ENGINE_URL=sqlite:///app.sqlite
 
 docker-compose up -d

@@ -6,20 +6,21 @@ if ! [[ -f .env ]]; then
     exit 1
 fi
 
-SERVER_IP_ADDRESS=${SERVER_IP_ADDRESS:-insert_ip_address}
-REMOTE_DIR=${REMOTE_DIR:-"/var/otvali"}
+SERVER_IP_ADDRESS=${SERVER_IP_ADDRESS:-"51.250.11.18"}
+URL=${URL:-"curly-notifier.vkiel.com"}
+REMOTE_DIR=${REMOTE_DIR:-"/var/curly-notifier"}
 SSH_USER=${SSH_USER:-"val-kiel"}
 SSH_KEY=${SSH_KEY:-"~/.ssh/yc"}
 
 
 ssh -i "${SSH_KEY}" "${SSH_USER}@${SERVER_IP_ADDRESS}" << 'ENDSSH'
-  if [ ! -d "/var/otvali" ]; then
-    sudo mkdir -p /var/otvali
-    sudo groupadd -f otvali
+  if [ ! -d "/var/curly-notifier" ]; then
+    sudo mkdir -p /var/curly-notifier
+    sudo groupadd -f curly-notifier
     USERNAME=$(whoami)
-    sudo usermod -aG otvali $USERNAME
-    sudo chown :otvali /var/otvali
-    sudo chmod 770 /var/otvali
+    sudo usermod -aG curly-notifier $USERNAME
+    sudo chown :curly-notifier /var/curly-notifier
+    sudo chmod 770 /var/curly-notifier
   fi
 ENDSSH
 
@@ -42,6 +43,25 @@ ssh -i "${SSH_KEY}" "${SSH_USER}@${SERVER_IP_ADDRESS}" << 'ENDSSH'
     echo "Warning: Script is designed for Ubuntu, compatibility issues may occur."
   fi
 ENDSSH
+
+ssh -i "${SSH_KEY}" "${SSH_USER}@${SERVER_IP_ADDRESS}" << 'ENDSSH'
+  # Install Certbot if it's not already installed
+  URL=curly-notifier.vkiel.com
+  if ! [ -x "$(command -v certbot)" ]; then
+    if [ "$(lsb_release -is)" = "Ubuntu" ]; then
+      sudo apt update
+      sudo apt install -y certbot python3-certbot-nginx
+    else
+      echo "Warning: Certbot installation is not supported on this system."
+      exit 1
+    fi
+  fi
+
+  # Create an Nginx configuration for the domain
+  sudo certbot --nginx -d $URL
+  sudo nginx -t && sudo systemctl reload nginx
+ENDSSH
+
 
 FILES=(".env" "docker_compose_up.sh" "docker-compose.yaml")
 
