@@ -10,8 +10,8 @@ help_text = '''
 So, in order to get bash script write /get_bash_script. It will give you a function that will send telegram notification when it's done its execution.
 
 An example of usage:
-```rwtn "echo hello-world"``` - this command will execute echo hello-world and send you something like this __Successfully executed: echo hello-world__
-```rwtn "fajlgjdlsjdkf"``` - this command will probably send you __Failed to execute: fajlgjdlsjdkf__
+`rwtn "echo hello-world"` - this command will execute echo hello-world and send you something like this __Successfully executed: echo hello-world__
+`rwtn "fajlgjdlsjdkf"` - this command will probably send you __Failed to execute: fajlgjdlsjdkf__
 '''
 
 
