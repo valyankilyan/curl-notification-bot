@@ -14,7 +14,7 @@ export SECRET_PAYLOAD=$(curl -X GET -H "Authorization: Bearer ${IAM_TOKEN}" http
 : ${SECRET_PAYLOAD:?"SECRET_PAYLOAD could not be retrieved"}
 
 export BOT_TOKEN=$(echo $SECRET_PAYLOAD | jq -r '.entries[] | select(.key=="BOT_TOKEN") | .textValue')
-export ADMIN_PASSWORD=$(echo $SECRET_PAYLOAD | jq -r '.entries[] | select(.key=="admin-password") | .textValue')
+export ADMIN_PASSWORD=$(echo $SECRET_PAYLOAD | jq -r '.entries[] | select(.key=="ADMIN_PASSWORD") | .textValue')
 
 export SQL_ENGINE_URL=sqlite:///app.sqlite
 
