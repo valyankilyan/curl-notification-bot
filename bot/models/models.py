@@ -8,11 +8,13 @@ class User(base, Model):
     id = Column(Integer, primary_key=True, autoincrement=True)
     tg_id = Column(BigInteger, unique=True)
     username = Column(String)
+    password = Column(String)
     is_admin = Column(Boolean)
 
-    def __init__(self, tg_id: int, username: str):
+    def __init__(self, tg_id: int, username: str, password: str):
         self.tg_id = tg_id
         self.username = username
+        self.password = password
         self.is_admin = False
 
     def __repr__(self):

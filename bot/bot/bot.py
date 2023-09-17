@@ -23,7 +23,7 @@ def init_flask(bot: myTeleBot, app: Flask, listen: str, port: int):
         data = request.get_json()
         text = data.get('text')
         telegram_id = data.get('telegram_id')
-        telegram_password = data.get('telegram_password')
+        telegram_password = data.get('password')
 
         if authenticate(telegram_id, telegram_password):
             send_telegram_notification(telegram_id, text)
@@ -40,6 +40,7 @@ def init_flask(bot: myTeleBot, app: Flask, listen: str, port: int):
 
 
 def init_message_handlers(bot: myTeleBot):
+    bot.logger.debug("init_message_handlers")
     setup_admin_commands(bot)
     setup_default_commands(bot)
     setup_callback_queries(bot)

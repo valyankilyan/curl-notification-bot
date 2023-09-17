@@ -29,17 +29,23 @@ def get_user_by_username(username: str) -> User:
     return session.query(User).filter(User.username == username).first()
 
 
-def get_user_by_tg_id(user_tg_id: Integer) -> User:
+def get_user_by_tg_id(user_tg_id: int) -> User:
     return session.query(User).filter(User.tg_id == user_tg_id).first()
+
+
+def get_user_password(user_tg_id: int) -> str:
+    user = get_user_by_tg_id(user_tg_id=user_tg_id)
+    return user.password
 
 
 def get_admins() -> List[User]:
     return session.query(User).filter(User.is_admin)
 
 
-def save_new_user(tg_id: int, username: str):
-    user = User(tg_id, username)
+def save_new_user(tg_id: int, username: str, password: str) -> User:
+    user = User(tg_id, username, password)
     user.commit()
+    return user
 
 
 def grant_user_admin_role(user: User):
