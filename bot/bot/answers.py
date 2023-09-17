@@ -1,11 +1,17 @@
 
 start_text = '''
-* Well, you started conversation *
+Hi, fella! I am curly-notifier bot. My purpose is to provide real-time updates on the execution of long-running commands.
+
+To get started, type /help to learn more about how to use me and why I'm useful.
 '''
 
 
 help_text = '''
-* Well, this is definately a bot and it has purpose i suppose *
+So, in order to get bash script write /get_bash_script. It will give you a function that will send telegram notification when it's done its execution.
+
+An example of usage:
+```rwtn "echo hello-world"``` - this command will execute echo hello-world and send you something like this __Successfully executed: echo hello-world__
+```rwtn "fajlgjdlsjdkf"``` - this command will probably send you __Failed to execute: fajlgjdlsjdkf__
 '''
 
 
@@ -34,7 +40,7 @@ function rwtn {{
         \\"text\\": \\"$TELEGRAM_NOTIFIER_MESSAGE\\",
         \\"telegram_id\\": \\"{}\\",
         \\"telegram_password\\": \\"{}\\"
-    }}" http://{}/send_notification
+    }}" https://{}/send_notification
 }}
 ```
 '''
