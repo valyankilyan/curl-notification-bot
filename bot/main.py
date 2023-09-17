@@ -1,5 +1,5 @@
 from bot.mytelebot import myTeleBot
-from bot.bot import init_bot, init_message_handlers, init_webhook
+from bot.bot import init_bot, init_message_handlers, init_flask
 from logger.logger import getLogger
 from bot.utils import init_util_bot
 from flask import Flask
@@ -20,7 +20,7 @@ if __name__ == "__main__":
 
     init_message_handlers(bot)
 
-    if use_webhook == "True":
-        init_webhook(bot, app, webhook_host, webhook_url_path, webhook_listen, int(webhook_port))
-    else:
+    init_flask(bot, app, host, int(port))
+
+    if use_webhook == "False":
         bot.polling(none_stop=True)

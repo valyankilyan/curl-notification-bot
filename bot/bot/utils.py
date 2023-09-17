@@ -30,3 +30,6 @@ def send_notification_to_admins(bot: myTeleBot, new_user_username: str):
     admins = get_admins()
     for admin in admins:
         bot.send_message(admin.tg_id, f'New user - @{new_user_username}')
+
+def authenticate(telegram_id: str, password: str):
+    return True
