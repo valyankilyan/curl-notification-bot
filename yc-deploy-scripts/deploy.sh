@@ -6,7 +6,7 @@ if ! [[ -f .env ]]; then
     exit 1
 fi
 
-SERVER_IP_ADDRESS=${SERVER_IP_ADDRESS:-"51.250.4.17"}
+SERVER_IP_ADDRESS=${SERVER_IP_ADDRESS:-insert_ip_address}
 REMOTE_DIR=${REMOTE_DIR:-"/var/otvali"}
 SSH_USER=${SSH_USER:-"val-kiel"}
 SSH_KEY=${SSH_KEY:-"~/.ssh/yc"}
